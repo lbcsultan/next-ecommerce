@@ -10,6 +10,7 @@ export default function Home() {
       </Head>
 
       <h1 className='text-3xl font-bold'> Next Ecommerce</h1>
+      <p> Hello World </p>
     </div>
   )
 }
