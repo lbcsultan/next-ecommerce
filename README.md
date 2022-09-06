@@ -2,7 +2,6 @@
 
 ## Lessons
 
-1. Introduction
-2. Install Tools
-3. Create Next App
-4. Publish to Github
+1. Initial - Create Next App
+2. Layout
+3. List Products
