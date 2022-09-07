@@ -5,3 +5,4 @@
 1. Initial - Create Next App
 2. Layout
 3. List Products
+4. Product Details Page
