@@ -7,3 +7,4 @@
 3. List Products
 4. Product Details Page
 5. Add to Cart
+6. Create Cart Page

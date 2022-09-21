@@ -8,11 +8,12 @@ import { Store } from '../../utils/Store'
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store)
+  const router = useRouter()
   const { query } = useRouter()
   const { slug } = query
   const product = data.products.find((x) => x.slug === slug)
   if (!product) {
-    return <div>Produt Not Found</div>
+    return <div>Product Not Found</div>
   }
 
   const addToCartHandler = () => {
@@ -24,12 +25,13 @@ export default function ProductScreen() {
       return
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+    router.push('/cart')
   }
 
   return (
     <Layout title={product.name}>
       <div className="py-2">
-        <Link href="/">back to products</Link>
+        <Link href="/">Back to products</Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
         <div className="md:col-span-2">
