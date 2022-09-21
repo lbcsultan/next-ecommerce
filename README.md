@@ -8,3 +8,4 @@
 4. Product Details Page
 5. Add to Cart
 6. Create Cart Page
+7. Update quantity in the cart
