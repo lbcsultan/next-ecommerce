@@ -11,3 +11,4 @@
 7. Update quantity in the cart
 8. Save cart items
 9. Create Login Form
+10. Connect to MongoDB
