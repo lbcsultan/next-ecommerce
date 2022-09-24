@@ -16,3 +16,4 @@
 12. Add User Menu
 13. Create Shipping Screen
 14. Create Payment Method
+15. Seed Sample Products
