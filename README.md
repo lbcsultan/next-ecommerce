@@ -19,3 +19,5 @@
 15. Seed Sample Products
 16. Load Products from MongoDB
 17. Create Place order Screen
+18. Create Order Screen
+19. Register Screen
