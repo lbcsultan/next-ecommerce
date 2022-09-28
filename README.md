@@ -23,3 +23,4 @@
 19. Register Screen
 20. Paypal payment
 21. Order history
+22. Update Profile
