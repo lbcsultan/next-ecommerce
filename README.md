@@ -21,3 +21,4 @@
 17. Create Place order Screen
 18. Create Order Screen
 19. Register Screen
+20. Paypal payment
