@@ -16,8 +16,10 @@ export default function CertScreen() {
   const lengths = [1024, 2048, 3072]
 
   const [keyLength, setKeyLength] = useState(1024)
+  // eslint-disable-next-line no-unused-vars
   const [publicKey, setPublicKey] = useState('')
   const [publicKeyPem, setPublicKeyPem] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [privateKey, setPrivateKey] = useState('')
   const [privateKeyPem, setPrivateKeyPem] = useState('')
 
@@ -36,8 +38,8 @@ export default function CertScreen() {
     const keypair = rsa.generateKeyPair({ bits: keyLength, e: 0x10001 })
     const pbk = keypair.publicKey
     const prk = keypair.privateKey
-    const publicKeyPem = pki.publicKeyToPem(publicKey)
-    const privateKeyPem = pki.privateKeyToPem(privateKey)
+    const publicKeyPem = pki.publicKeyToPem(pbk)
+    const privateKeyPem = pki.privateKeyToPem(prk)
 
     setPublicKey(pbk)
     setPublicKeyPem(publicKeyPem)
@@ -120,6 +122,7 @@ export default function CertScreen() {
                 className="p-2 outline-none focus:ring-0"
                 id={length}
                 type="radio"
+                defaultValue={1024}
                 onChange={() => setKeyLength(length)}
               />
               <label className="p-2" htmlFor={length}>
