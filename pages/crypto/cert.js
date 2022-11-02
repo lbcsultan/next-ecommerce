@@ -34,14 +34,14 @@ export default function CertScreen() {
 
   const keyGen = () => {
     const keypair = rsa.generateKeyPair({ bits: keyLength, e: 0x10001 })
-    const publicKey = keypair.publicKey
-    const privateKey = keypair.privateKey
+    const pbk = keypair.publicKey
+    const prk = keypair.privateKey
     const publicKeyPem = pki.publicKeyToPem(publicKey)
     const privateKeyPem = pki.privateKeyToPem(privateKey)
 
-    setPublicKey(publicKey)
+    setPublicKey(pbk)
     setPublicKeyPem(publicKeyPem)
-    setPrivateKey(privateKey)
+    setPrivateKey(prk)
     setPrivateKeyPem(privateKeyPem)
     localStorage.setItem('privateKeyPem', privateKeyPem)
   }
@@ -120,7 +120,7 @@ export default function CertScreen() {
                 className="p-2 outline-none focus:ring-0"
                 id={length}
                 type="radio"
-                onChange={(e) => setKeyLength(length)}
+                onChange={() => setKeyLength(length)}
               />
               <label className="p-2" htmlFor={length}>
                 {length}

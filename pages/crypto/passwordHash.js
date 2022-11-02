@@ -54,7 +54,7 @@ export default function PasswordHashScreen() {
             name="password"
             id="password"
             className="w-full bg-gray-50"
-            value={password}
+            defaultValue={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -78,8 +78,7 @@ export default function PasswordHashScreen() {
             name="hpassword"
             id="hpassword"
             className="w-full bg-gray-50"
-            value={hpassword}
-            onChange={(e) => setIteration(e.target.value)}
+            defaultValue={hpassword}
           />
         </div>
 
@@ -92,7 +91,7 @@ export default function PasswordHashScreen() {
             name="password1"
             id="password1"
             className="w-full bg-gray-50"
-            value={password1}
+            defaultValue={password1}
             onChange={(e) => setPassword1(e.target.value)}
           />
         </div>

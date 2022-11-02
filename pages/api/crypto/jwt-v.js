@@ -1,12 +1,11 @@
-import forge from 'node-forge';
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 
-const SECRET = process.env.JWT_SECRET;
+const SECRET = process.env.JWT_SECRET
 
 export default function handler(req, res) {
-  const token = req.body.token;
+  const token = req.body.token
 
-  const result = jwt.verify(token, SECRET);
+  const result = jwt.verify(token, SECRET)
 
-  res.status(200).json({ result });
+  res.status(200).json({ result })
 }

@@ -1,30 +1,29 @@
-import forge from 'node-forge';
+import forge from 'node-forge'
 
-const rsa = forge.pki.rsa;
-const pki = forge.pki;
+const pki = forge.pki
 
-const caCertPem = process.env.CA_CERT;
-const caPrivateKeyPem = process.env.CA_PRIVATE;
-const caCert = pki.certificateFromPem(caCertPem);
-const caPrivateKey = pki.privateKeyFromPem(caPrivateKeyPem);
+const caCertPem = process.env.CA_CERT
+const caPrivateKeyPem = process.env.CA_PRIVATE
+const caCert = pki.certificateFromPem(caCertPem)
+const caPrivateKey = pki.privateKeyFromPem(caPrivateKeyPem)
 
 export default function handler(req, res) {
-  const serial = req.body.serial;
-  const cn = req.body.cn;
-  const country = req.body.country;
-  const state = req.body.state;
-  const locality = req.body.locality;
-  const org = req.body.org;
-  const orgUnit = req.body.orgUnit;
-  const publicKeyPem = req.body.publicKeyPem;
-  const publicKey = pki.publicKeyFromPem(publicKeyPem);
+  const serial = req.body.serial
+  const cn = req.body.cn
+  const country = req.body.country
+  const state = req.body.state
+  const locality = req.body.locality
+  const org = req.body.org
+  const orgUnit = req.body.orgUnit
+  const publicKeyPem = req.body.publicKeyPem
+  const publicKey = pki.publicKeyFromPem(publicKeyPem)
 
-  let cert = forge.pki.createCertificate();
-  cert.publicKey = publicKey;
-  cert.serialNumber = serial;
-  cert.validity.notBefore = new Date();
-  cert.validity.notAfter = new Date();
-  cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 1);
+  let cert = forge.pki.createCertificate()
+  cert.publicKey = publicKey
+  cert.serialNumber = serial
+  cert.validity.notBefore = new Date()
+  cert.validity.notAfter = new Date()
+  cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 1)
   var userAttrs = [
     {
       shortName: 'CN',
@@ -50,8 +49,8 @@ export default function handler(req, res) {
       shortName: 'OU',
       value: orgUnit,
     },
-  ];
-  cert.setSubject(userAttrs);
+  ]
+  cert.setSubject(userAttrs)
 
   var caAttrs = [
     {
@@ -78,8 +77,8 @@ export default function handler(req, res) {
       shortName: 'OU',
       value: caCert.subject.getField('OU').value,
     },
-  ];
-  cert.setIssuer(caAttrs);
+  ]
+  cert.setIssuer(caAttrs)
 
   cert.setExtensions([
     {
@@ -128,16 +127,16 @@ export default function handler(req, res) {
     {
       name: 'subjectKeyIdentifier',
     },
-  ]);
+  ])
 
   // self-sign certificate
-  cert.sign(caPrivateKey);
+  cert.sign(caPrivateKey)
 
-  let certPem = forge.pki.certificateToPem(cert);
-  let caCertPem = forge.pki.certificateToPem(caCert);
+  let certPem = forge.pki.certificateToPem(cert)
+  let caCertPem = forge.pki.certificateToPem(caCert)
 
-  var result = caCert.verify(cert);
-  // console.log('Verification: ' + result);
+  var result = caCert.verify(cert)
+  console.log('Verification: ' + result)
 
-  res.status(200).json({ certPem, caCertPem });
+  res.status(200).json({ certPem, caCertPem })
 }

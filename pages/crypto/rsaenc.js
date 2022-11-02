@@ -87,7 +87,7 @@ export default function RSAEncScreen() {
                 className="p-2 outline-none focus:ring-0"
                 id={length}
                 type="radio"
-                onChange={(e) => setKeyLength(length)}
+                onChange={() => setKeyLength(length)}
               />
               <label className="p-2" htmlFor={length}>
                 {length}

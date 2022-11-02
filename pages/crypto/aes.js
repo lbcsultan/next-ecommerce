@@ -100,7 +100,7 @@ export default function AESScreen() {
                 className="p-2 outline-none focus:ring-0"
                 id={mode}
                 type="radio"
-                onChange={(e) => setMode(mode)}
+                onChange={() => setMode(mode)}
               />
               <label className="p-2" htmlFor={mode}>
                 {mode}
@@ -120,7 +120,7 @@ export default function AESScreen() {
                 className="p-2 outline-none focus:ring-0"
                 id={length}
                 type="radio"
-                onChange={(e) => setKeyLength(length)}
+                onChange={() => setKeyLength(length)}
               />
               <label className="p-2" htmlFor={length}>
                 {length}

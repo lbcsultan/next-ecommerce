@@ -20,29 +20,34 @@ export default function HashScreen() {
 
     switch (algorithm) {
       case 'md5':
-        var md = forge.md.md5.create()
-        md.update(inputText)
-        setHashValue1(md.digest().toHex())
+        // eslint-disable-next-line no-case-declarations
+        let md1 = forge.md.md5.create()
+        md1.update(inputText)
+        setHashValue1(md1.digest().toHex())
         return
       case 'sha1':
-        var md = forge.md.sha1.create()
-        md.update(inputText)
-        setHashValue1(md.digest().toHex())
+        // eslint-disable-next-line no-case-declarations
+        let md2 = forge.md.sha1.create()
+        md2.update(inputText)
+        setHashValue1(md2.digest().toHex())
         return
       case 'sha256':
-        var md = forge.md.sha256.create()
-        md.update(inputText)
-        setHashValue1(md.digest().toHex())
+        // eslint-disable-next-line no-case-declarations
+        var md3 = forge.md.sha256.create()
+        md3.update(inputText)
+        setHashValue1(md3.digest().toHex())
         return
       case 'sha384':
-        var md = forge.md.sha384.create()
-        md.update(inputText)
-        setHashValue1(md.digest().toHex())
+        // eslint-disable-next-line no-case-declarations
+        var md4 = forge.md.sha384.create()
+        md4.update(inputText)
+        setHashValue1(md4.digest().toHex())
         return
       case 'sha512':
-        var md = forge.md.sha512.create()
-        md.update(inputText)
-        setHashValue1(md.digest().toHex())
+        // eslint-disable-next-line no-case-declarations
+        var md5 = forge.md.sha512.create()
+        md5.update(inputText)
+        setHashValue1(md5.digest().toHex())
         return
     }
   }
@@ -64,7 +69,7 @@ export default function HashScreen() {
                   className="p-2 outline-none focus:ring-0"
                   id={algo}
                   type="radio"
-                  onChange={(e) => setAlgorithm(algo)}
+                  onChange={() => setAlgorithm(algo)}
                 />
                 <label className="p-2" htmlFor={algo}>
                   {algo}

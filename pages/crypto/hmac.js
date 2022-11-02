@@ -48,7 +48,7 @@ export default function HMACScreen() {
                   className="p-2 outline-none focus:ring-0"
                   id={algo}
                   type="radio"
-                  onChange={(e) => setAlgorithm(algo)}
+                  onChange={() => setAlgorithm(algo)}
                 />
                 <label className="p-2" htmlFor={algo}>
                   {algo}
