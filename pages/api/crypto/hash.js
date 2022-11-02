@@ -7,31 +7,36 @@ export default function handler(req, res) {
 
   switch (algorithm) {
     case 'md5':
-      var md1 = forge.md.md5.create()
+      // eslint-disable-next-line no-case-declarations
+      let md1 = forge.md.md5.create()
       md1.update(inputText)
       hashValue = md1.digest().toHex()
       res.status(200).json({ hashValue: hashValue })
       return
     case 'sha1':
-      var md2 = forge.md.sha1.create()
+      // eslint-disable-next-line no-case-declarations
+      let md2 = forge.md.sha1.create()
       md2.update(inputText)
       hashValue = md2.digest().toHex()
       res.status(200).json({ hashValue: hashValue })
       return
     case 'sha256':
-      var md3 = forge.md.sha256.create()
+      // eslint-disable-next-line no-case-declarations
+      let md3 = forge.md.sha256.create()
       md3.update(inputText)
       hashValue = md3.digest().toHex()
       res.status(200).json({ hashValue: hashValue })
       return
     case 'sha384':
-      var md4 = forge.md.sha384.create()
+      // eslint-disable-next-line no-case-declarations
+      let md4 = forge.md.sha384.create()
       md4.update(inputText)
       hashValue = md4.digest().toHex()
       res.status(200).json({ hashValue: hashValue })
       return
     case 'sha512':
-      var md5 = forge.md.sha512.create()
+      // eslint-disable-next-line no-case-declarations
+      let md5 = forge.md.sha512.create()
       md5.update(inputText)
       hashValue = md5.digest().toHex()
       res.status(200).json({ hashValue: hashValue })
