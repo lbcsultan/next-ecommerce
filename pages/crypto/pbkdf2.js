@@ -14,7 +14,7 @@ export default function Pbkdf2Screen() {
   const [key2, setKey2] = useState('')
 
   const submitHandler = async () => {
-    axios
+    await axios
       .post('/api/crypto/pbkdf2', { password, salt, iteration, keyLength })
       .then((res) => {
         setKey2(res.data.key)

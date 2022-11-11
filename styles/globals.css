@@ -48,6 +48,10 @@ textarea {
   @apply my-3 rounded-lg bg-green-100 p-3 text-green-700;
 }
 
+.button-link {
+  @apply bg-yellow-400 hover:bg-yellow-500 p-2 m-2 rounded-md mb-4 text-center;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

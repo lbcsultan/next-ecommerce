@@ -14,9 +14,11 @@ export default function HashScreen() {
   const [hashValue2, setHashValue2] = useState('')
 
   const submitHandler = async () => {
-    axios.post('/api/crypto/hash', { algorithm, inputText }).then((res) => {
-      setHashValue2(res.data.hashValue)
-    })
+    await axios
+      .post('/api/crypto/hash', { algorithm, inputText })
+      .then((res) => {
+        setHashValue2(res.data.hashValue)
+      })
 
     switch (algorithm) {
       case 'md5':

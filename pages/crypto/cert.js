@@ -50,7 +50,7 @@ export default function CertScreen() {
 
   const genCert = async () => {
     // 서버에 요청하여 서버가 발급하는 인증서를 받아옴
-    axios
+    await axios
       .post('/api/crypto/cert', {
         serial,
         cn,

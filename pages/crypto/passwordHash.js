@@ -18,7 +18,7 @@ export default function PasswordHashScreen() {
   }
 
   const loginHandler = async () => {
-    axios
+    await axios
       .post('/api/crypto/passwordHash', { password, password1 })
       .then((res) => {
         setResult1(res.data.result)

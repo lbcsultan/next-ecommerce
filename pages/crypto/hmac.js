@@ -15,7 +15,7 @@ export default function HMACScreen() {
   const [hmacValue2, setHmacValue2] = useState('')
 
   const submitHandler = async () => {
-    axios
+    await axios
       .post('/api/crypto/hmac', { algorithm, inputText, secret })
       .then((res) => {
         setHmacValue2(res.data.hmacValue)

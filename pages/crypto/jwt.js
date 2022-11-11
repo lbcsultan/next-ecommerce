@@ -16,7 +16,7 @@ export default function JwtScreen() {
   const [result, setResult] = useState('')
 
   const genJwt = async () => {
-    axios.post('/api/crypto/jwt', { username }).then((res) => {
+    await axios.post('/api/crypto/jwt', { username }).then((res) => {
       setToken(res.data.token)
       localStorage.setItem('jwt', res.data.token)
       let decoded = jwt.decode(res.data.token)
@@ -25,7 +25,7 @@ export default function JwtScreen() {
   }
 
   const verifyJwt = async () => {
-    axios.post('/api/crypto/jwt-v', { token }).then((res) => {
+    await axios.post('/api/crypto/jwt-v', { token }).then((res) => {
       setResult(res.data.result)
     })
   }
