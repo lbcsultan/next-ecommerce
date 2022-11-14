@@ -13,6 +13,7 @@ export default function Crypto() {
             <a className=" text-xl">Hash function - 해시함수 </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/hmac">
             <a className=" text-xl">
@@ -20,6 +21,7 @@ export default function Crypto() {
             </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/pbkdf2">
             <a className=" text-xl">
@@ -27,34 +29,46 @@ export default function Crypto() {
             </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/passwordHash">
             <a className=" text-xl">Password Hash Salting - 패스워드 해시 </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/aes">
             <a className=" text-xl">AES encryption - 대칭키 암호 </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/rsaenc">
             <a className=" text-xl">RSA encryption - 공개키 암호 </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/rsasig">
             <a className=" text-xl">RSA signature - 전자서명 </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/jwt">
             <a className=" text-xl">JSON Web Token (JWT) </a>
           </Link>
         </div>
+
         <div className="button-link">
           <Link href="crypto/cert">
             <a className=" text-xl">Certificate - 인증서 </a>
+          </Link>
+        </div>
+
+        <div className="button-link">
+          <Link href="crypto/jwt-storage">
+            <a className=" text-xl">JWT - Storage </a>
           </Link>
         </div>
       </div>

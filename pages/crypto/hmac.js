@@ -4,6 +4,7 @@ import forge from 'node-forge'
 import Image from 'next/image'
 import hmacPic from '../../public/hmac.jpg'
 import axios from 'axios'
+import { computeHmac } from '../../utils/crypto-function'
 
 export default function HMACScreen() {
   const algorithms = ['md5', 'sha1', 'sha256', 'sha384', 'sha512']
@@ -21,10 +22,9 @@ export default function HMACScreen() {
         setHmacValue2(res.data.hmacValue)
       })
 
-    let hmac = forge.hmac.create()
-    hmac.start(algorithm, secret)
-    hmac.update(inputText)
-    setHmacValue1(hmac.digest().toHex())
+    let hmacValue = computeHmac(algorithm, secret, inputText)
+
+    setHmacValue1(hmacValue)
   }
 
   const randomSecret = () => {

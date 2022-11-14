@@ -4,6 +4,7 @@ import forge from 'node-forge'
 import Image from 'next/image'
 import hashPic from '../../public/hash.jpg'
 import axios from 'axios'
+import { computeHash } from '../../utils/crypto-function'
 
 export default function HashScreen() {
   const algorithms = ['md5', 'sha1', 'sha256', 'sha384', 'sha512']
@@ -20,38 +21,8 @@ export default function HashScreen() {
         setHashValue2(res.data.hashValue)
       })
 
-    switch (algorithm) {
-      case 'md5':
-        // eslint-disable-next-line no-case-declarations
-        let md1 = forge.md.md5.create()
-        md1.update(inputText)
-        setHashValue1(md1.digest().toHex())
-        return
-      case 'sha1':
-        // eslint-disable-next-line no-case-declarations
-        let md2 = forge.md.sha1.create()
-        md2.update(inputText)
-        setHashValue1(md2.digest().toHex())
-        return
-      case 'sha256':
-        // eslint-disable-next-line no-case-declarations
-        var md3 = forge.md.sha256.create()
-        md3.update(inputText)
-        setHashValue1(md3.digest().toHex())
-        return
-      case 'sha384':
-        // eslint-disable-next-line no-case-declarations
-        var md4 = forge.md.sha384.create()
-        md4.update(inputText)
-        setHashValue1(md4.digest().toHex())
-        return
-      case 'sha512':
-        // eslint-disable-next-line no-case-declarations
-        var md5 = forge.md.sha512.create()
-        md5.update(inputText)
-        setHashValue1(md5.digest().toHex())
-        return
-    }
+    let hashValue = computeHash(algorithm, inputText)
+    setHashValue1(hashValue)
   }
 
   return (

@@ -1,4 +1,7 @@
+import { getSession } from 'next-auth/react'
 import forge from 'node-forge'
+import CryptoLog from '../../../models/CryptoLog'
+import db from '../../../utils/db'
 
 const pki = forge.pki
 
@@ -7,15 +10,10 @@ const caPrivateKeyPem = process.env.CA_PRIVATE
 const caCert = pki.certificateFromPem(caCertPem)
 const caPrivateKey = pki.privateKeyFromPem(caPrivateKeyPem)
 
-export default function handler(req, res) {
-  const serial = req.body.serial
-  const cn = req.body.cn
-  const country = req.body.country
-  const state = req.body.state
-  const locality = req.body.locality
-  const org = req.body.org
-  const orgUnit = req.body.orgUnit
-  const publicKeyPem = req.body.publicKeyPem
+export default async function handler(req, res) {
+  const { serial, cn, country, state, locality, org, orgUnit, publicKeyPem } =
+    req.body
+
   const publicKey = pki.publicKeyFromPem(publicKeyPem)
 
   let cert = forge.pki.createCertificate()
@@ -137,6 +135,26 @@ export default function handler(req, res) {
 
   var result = caCert.verify(cert)
   console.log('Verification: ' + result)
+
+  const session = await getSession({ req })
+  if (!session) {
+    return res.status(401).send({ message: 'signin required' })
+  }
+  const { user } = session
+  const email = user.email
+
+  const requestString = JSON.stringify(req.body)
+
+  await db.connect()
+
+  const newCryptoLog = new CryptoLog({
+    email,
+    service: 'Cert',
+    request: requestString,
+  })
+
+  await newCryptoLog.save()
+  await db.disconnect()
 
   res.status(200).json({ certPem, caCertPem })
 }
