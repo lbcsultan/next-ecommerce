@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const iteration = parseInt(req.body.iteration)
   const keyLength = parseInt(req.body.keyLength)
 
-  const derivedKey = forge.util.bytesToHex(
+  const key = forge.util.bytesToHex(
     forge.pkcs5.pbkdf2(password, salt, iteration, keyLength)
   )
 
@@ -21,17 +21,18 @@ export default async function handler(req, res) {
   const email = user.email
 
   const requestString = JSON.stringify(req.body)
-
-  await db.connect()
+  const resultString = JSON.stringify({ key })
 
   const newCryptoLog = new CryptoLog({
     email,
     service: 'PBKDF2',
     request: requestString,
+    result: resultString,
   })
 
+  await db.connect()
   await newCryptoLog.save()
   await db.disconnect()
 
-  res.status(200).json({ key: derivedKey })
+  res.status(200).json({ key })
 }

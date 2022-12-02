@@ -18,15 +18,16 @@ export default async function handler(req, res) {
   const email = user.email
 
   const requestString = JSON.stringify(req.body)
-
-  await db.connect()
+  const resultString = JSON.stringify({ result })
 
   const newCryptoLog = new CryptoLog({
     email,
-    service: 'pHash',
+    service: 'Password Hash',
     request: requestString,
+    result: resultString,
   })
 
+  await db.connect()
   await newCryptoLog.save()
   await db.disconnect()
 

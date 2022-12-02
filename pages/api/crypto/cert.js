@@ -144,15 +144,16 @@ export default async function handler(req, res) {
   const email = user.email
 
   const requestString = JSON.stringify(req.body)
-
-  await db.connect()
+  const resultString = JSON.stringify({ certPem, caCertPem })
 
   const newCryptoLog = new CryptoLog({
     email,
-    service: 'Cert',
+    service: 'Certificate',
     request: requestString,
+    result: resultString,
   })
 
+  await db.connect()
   await newCryptoLog.save()
   await db.disconnect()
 
